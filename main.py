@@ -1,7 +1,11 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from database import Base, engine
-from routes import electricity, water, cleaning, analysis, achievements, health
+import electricity
+import water
+import cleaning
+import analysis
+import achievements
 
 # Auto-create all tables on startup (non-fatal if DB not yet configured)
 try:
@@ -28,7 +32,6 @@ app.add_middleware(
 )
 
 # Mount routers
-app.include_router(health.router,        prefix="/api/health",        tags=["Health"])
 app.include_router(electricity.router,   prefix="/api/electricity",   tags=["Electricity"])
 app.include_router(water.router,         prefix="/api/water",         tags=["Water"])
 app.include_router(cleaning.router,      prefix="/api/cleaning",      tags=["Cleaning"])
@@ -39,3 +42,7 @@ app.include_router(achievements.router,  prefix="/api/achievements",  tags=["Ach
 @app.get("/")
 def root():
     return {"message": "EcoSense API is running 🌿", "docs": "/api/docs"}
+
+@app.get("/api/health")
+def health_check():
+    return {"status": "ok", "message": "Backend is running!"}
