@@ -1,8 +1,6 @@
-fastapi
-uvicorn[standard]
-sqlalchemy
-pymysql
-python-dotenv
-pydantic
-cryptography
-gunicorn
+fastapi==0.110.0
+uvicorn[standard]==0.29.0
+sqlalchemy==2.0.29
+python-dotenv==1.0.1
+pydantic==2.5.3
+gunicorn==21.2.0
