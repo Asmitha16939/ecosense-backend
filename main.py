@@ -25,7 +25,12 @@ app = FastAPI(
 # Allow all origins for hackathon (tighten for production)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[
+        "https://ecosense-frontend-beta.vercel.app",  # Your main frontend URL
+        "https://ecosense-frontend.vercel.app",        # Your Vercel project URL
+        "http://localhost:3000",                        # For local development (optional)
+        "http://127.0.0.1:3000"
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
